@@ -1,0 +1,533 @@
+<?php 
+	//Make connection with database
+	mysql_connect('localhost','root','');
+
+	//select database
+	mysql_select_db('fsa');
+	$sql="SELECT * FROM fsadata";
+	$records=mysql_query($sql);
+
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home</title>
+	<script src="https://ft2json.appspot.com/api/ft2json.js" type="text/javascript"> 
+	function showSpoiler(obj)
+	{
+	var inner = obj.parentNode.getElementsByTagName("div")[0];
+	if (inner.style.display == "none")
+		inner.style.display = "";
+	else
+		inner.style.display = "none";
+	}
+	</script>
+	<meta charset='utf-8' />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta content='' name='description' />
+    <meta content='' name='author' />
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/custom.css"/>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+	<div class='navbar navbar-default navbar-static-top'>
+      <div class='container-fluid'>
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class='navbar-brand' href='index.html'>Map Search - sales</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class='active'><a href="index.html">Home</a></li>
+            <li class='active'><a href="maps_page.html">View by map</a></li>li>
+            
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+	<form name= "fsa navigation search">
+		Business Name: <input type="text" name="txtBusinessName">
+		Street, town or postcode: <input type="text" name="textLocation">
+				<br><div id="spoiler" style="display:none">
+					<br> <div id="BusinessTypeMenu">
+						<label> Business Type</label>
+						<select>
+							<option selected="selected">All</option>
+							<option>Distributors/Transport</option>
+							<option>Farmers/growers</option>
+							<option>Hospitals/Childcare/Caring Premises</option>
+							<option>Hotel/bed & breakfast/guest house</option>
+							<option>Importers/Exporters</option>
+							<option>Manufacturers/packers</option>
+							<option>Mobile caterer</option>
+							<option>Other catering</option>
+							<option>Pub/bar/nightclub</option>
+							<option>Restaurant/Cafe/Canteen</option>
+							<option>Tetailers - other</option>
+							<option>Retailers - supermarkets/hypermarkets</option>
+							<option>School/college/university</option>
+							<option>Takeaway/sandwich</option>
+						</select>
+					</div>
+				<br> <div id="LocalAuthorityMenu">
+						<label>Country or local authority</label>
+						<select>
+							<option selected="selected">All</option>
+							<option>England</option>
+							<option>Northern Ireland</option>
+							<option>Scotland</option>
+							<option>Wales</option>
+							<option>Aberdeen City</option>
+							<option>Aberdeenshire</option>
+							<option>Adur</option>
+							<option>Allerdale</option>
+							<option>Amber Valley</option>
+							<option>Anglesey</option>
+							<option>Angus</option>
+							<option>Antrim and Newtownabbey</option>
+							<option>Ards and North Down</option>
+							<option>Argyll and Bute</option>
+							<option>Armagh City, Banbridge and Craigavon</option>
+							<option>Arun</option>
+							<option>Ashfield</option>
+							<option>Ashford</option>
+							<option>Aylesbury Vale</option>
+							<option>Babergh</option>
+							<option>Barking and Dagenham</option>
+							<option>Barnet</option>
+							<option>Barnsley</option>
+							<option>Barrow-in-Furness</option>
+							<option>Basildon</option>
+							<option>Basingstoke and Deane</option>
+							<option>Bassetlaw</option>
+							<option>Bath and North East Somerset</option>
+							<option>Bedford</option>
+							<option>Belfast City</option>
+							<option>Bexley</option>
+							<option>Birmingham</option>
+							<option>Blaby</option>
+							<option>Blackburn</option>
+							<option>Blackpool</option>
+							<option>Blaenau Gwent</option>
+							<option>Bolsover</option>
+							<option>Bolton</option>
+							<option>Boston</option>
+							<option>Bournemouth</option>
+							<option>Bracknell Forest</option>
+							<option>Bradford</option>
+							<option>Braintree</option>
+							<option>Breckland</option>
+							<option>Brent</option>
+							<option>Brentwood</option>
+							<option>Bridgend</option>
+							<option>Brighton and Hove</option>
+							<option>Bristol</option>
+							<option>Broadland</option>
+							<option>Bromley</option>
+							<option>Bromsgrove</option>
+							<option>Broxbourne</option>
+							<option>Broxtowe</option>
+							<option>Burnley</option>
+							<option>Bury</option>
+							<option>Caerphilly</option>
+							<option>Calderdale</option>
+							<option>Cambridge City</option>
+							<option>Camden</option>
+							<option>Cannock Chase</option>
+							<option>Canterbury City</option>
+							<option>Cardiff</option>
+							<option>Carlisle City</option>
+							<option>Carmarthenshire</option>
+							<option>Castle Point</option>
+							<option>Causeway Coast and Glens</option>
+							<option>Central Bedfordshire</option>
+							<option>Ceredigion</option>
+							<option>Charnwood</option>
+							<option>Chelmsford</option>
+							<option>Cheltenham</option>
+							<option>Cherwell</option>
+							<option>Cheshire East</option>
+							<option>Cheshire West and Chester</option>
+							<option>Chesterfield</option>
+							<option>Chichester</option>
+							<option>Chiltern</option>
+							<option>Chorley</option>
+							<option>Christchurch</option>
+							<option>City of London Corporation</option>
+							<option>Clackmannanshire</option>
+							<option>Colchester</option>
+							<option>Comhairle nan Eilean Siar (Western Isles)</option>
+							<option>Conwy</option>
+							<option>Copeland</option>
+							<option>Corby</option>
+							<option>Cornwall</option>
+							<option>Cotswold</option>
+							<option>Coventry</option>
+							<option>Craven</option>
+							<option>Crawley</option>
+							<option>Croydon</option>
+							<option>Dacorum</option>
+							<option>Darlington</option>
+							<option>Dartford</option>
+							<option>Daventry</option>
+							<option>Denbighshire</option>
+							<option>Derby City</option>
+							<option>Derbyshire Dales</option>
+							<option>Derry City and Strabane</option>
+							<option>Doncaster</option>
+							<option>Dover</option>
+							<option>Dudley</option>
+							<option>Dumfries and Galloway</option>
+							<option>Dundee City</option>
+							<option>Durham</option>
+							<option>Ealing</option>
+							<option>East Ayrshire</option>
+							<option>East Cambridgeshire</option>
+							<option>East Devon</option>
+							<option>East Dorset</option>
+							<option>East Dunbartonshire</option>
+							<option>East Hampshire</option>
+							<option>East Hertfordshire</option>
+							<option>East Lindsey</option>
+							<option>East Lothian</option>
+							<option>East Northamptonshire</option>
+							<option>East Renfrewshire</option>
+							<option>East Riding of Yorkshire</option>
+							<option>East Staffordshire</option>
+							<option>Eastbourne</option>
+							<option>Eastleigh</option>
+							<option>Eden</option>
+							<option>Edinburgh (City of)</option>
+							<option>Elmbridge</option>
+							<option>Enfield</option>
+							<option>Epping Forest</option>
+							<option>Epsom and Ewell</option>
+							<option>Erewash</option>
+							<option>Exeter City</option>
+							<option>Falkirk</option>
+							<option>Fareham</option>
+							<option>Fenland</option>
+							<option>Fermanagh and Omagh</option>
+							<option>Fife</option>
+							<option>Flintshire</option>
+							<option>Forest Heath</option>
+							<option>Forest of Dean</option>
+							<option>Fylde</option>
+							<option>Gateshead</option>
+							<option>Gedling</option>
+							<option>Glasgow City</option>
+							<option>Gloucester City</option>
+							<option>Gosport</option>
+							<option>Gravesham</option>
+							<option>Great Yarmouth</option>
+							<option>Greenwich</option>
+							<option>Guildford</option>
+							<option>Gwynedd</option>
+							<option>Hackney</option>
+							<option>Halton</option>
+							<option>Hambleton</option>
+							<option>Hammersmith and Fulham</option>
+							<option>Harborough</option>
+							<option>Haringey</option>
+							<option>Harlow</option>
+							<option>Harrogate</option>
+							<option >Harrow</option>
+							<option>Hart</option>
+							<option>Hartlepool</option>
+							<option>Hastings</option>
+							<option>Havant</option>
+							<option>Havering</option>
+							<option>Herefordshire</option>
+							<option>Hertsmere</option>
+							<option>High Peak</option>
+							<option>Highland</option>
+							<option>Hillingdon</option>
+							<option>Hinckley and Bosworth</option>
+							<option>Horsham</option>
+							<option>Hounslow</option>
+							<option>Hull City</option>
+							<option>Huntingdonshire</option>
+							<option>Hyndburn</option>
+							<option>Inverclyde</option>
+							<option>Ipswich</option>
+							<option>Isle of Wight</option>
+							<option>Isles of Scilly</option>
+							<option>Islington</option>
+							<option>Kensington and Chelsea</option>
+							<option>Kettering</option>
+							<option>King's Lynn and West Norfolk</option>
+							<option>Kingston-Upon-Thames</option>
+							<option>Kirklees</option>
+							<option>Knowsley</option>
+							<option>Lambeth</option>
+							<option>Lancaster City</option>
+							<option>Leeds</option>
+							<option>Leicester City</option>
+							<option>Lewes</option>
+							<option>Lewisham</option>
+							<option>Lichfield</option>
+							<option>Lincoln City</option>
+							<option>Lisburn and Castlereagh City</option>
+							<option>Liverpool</option>
+							<option>Luton</option>
+							<option>Maidstone</option>
+							<option>Maldon</option>
+							<option>Malvern Hills</option>
+							<option>Manchester</option>
+							<option>Mansfield</option>
+							<option>Medway</option>
+							<option>Melton</option>
+							<option>Mendip</option>
+							<option>Merthyr Tydfil</option>
+							<option>Merton</option>
+							<option>Mid and East Antrim</option>
+							<option>Mid Devon</option>
+							<option>Mid Suffolk</option>
+							<option>Mid Sussex</option>
+							<option>Mid Ulster</option>
+							<option>Middlesbrough</option>
+							<option>Midlothian</option>
+							<option>Milton Keynes</option>
+							<option>Mole Valley</option>
+							<option>Monmouthshire</option>
+							<option>Moray</option>
+							<option>Neath Port Talbot</option>
+							<option>New Forest</option>
+							<option>Newark and Sherwood</option>
+							<option>Newcastle Upon Tyne</option>
+							<option>Newcastle-Under-Lyme</option>
+							<option>Newham</option>
+							<option>Newport</option>
+							<option>Newry, Mourne and Down</option>
+							<option>North Ayrshire</option>
+							<option>North Devon</option>
+							<option>North Dorset</option>
+							<option>North East Derbyshire</option>
+							<option>North East Lincolnshire</option>
+							<option>North Hertfordshire</option>
+							<option>North Kesteven</option>
+							<option>North Lanarkshire</option>
+							<option>North Lincolnshire</option>
+							<option>North Norfolk</option>
+							<option>North Somerset</option>
+							<option>North Tyneside</option>
+							<option>North Warwickshire</option>
+							<option>North West Leicestershire</option>
+							<option>Northampton</option>
+							<option>Northumberland</option>
+							<option>Norwich City</option>
+							<option>Nottingham City</option>
+							<option>Nuneaton and Bedworth</option>
+							<option>Oadby and Wigston</option>
+							<option>Oldham</option>
+							<option>Orkney Islands</option>
+							<option>Oxford City</option>
+							<option>Pembrokeshire</option>
+							<option>Pendle</option>
+							<option>Perth and Kinross</option>
+							<option>Peterborough City</option>
+							<option>Plymouth City</option>
+							<option>Poole</option>
+							<option>Portsmouth</option>
+							<option>Powys</option>
+							<option>Preston</option>
+							<option>Purbeck</option>
+							<option>Reading</option>
+							<option>Redbridge</option>
+							<option>Redcar and Cleveland</option>
+							<option>Redditch</option>
+							<option>Reigate and Banstead</option>
+							<option>Renfrewshire</option>
+							<option>Rhondda Cynon Taf</option>
+							<option>Ribble Valley</option>
+							<option>Richmondshire</option>
+							<option>Richmond-Upon-Thames</option>
+							<option>River Tees</option>
+							<option>Rochdale</option>
+							<option>Rochford</option>
+							<option>Rossendale</option>
+							<option>Rother</option>
+							<option>Rotherham</option>
+							<option>Rugby</option>
+							<option>Runnymede</option>
+							<option>Rushcliffe</option>
+							<option>Rushmoor</option>
+							<option>Ryedale</option>
+							<option>Salford</option>
+							<option>Sandwell</option>
+							<option>Scarborough</option>
+							<option>Scottish Borders</option>
+							<option>Sedgemoor</option>
+							<option>Sefton</option>
+							<option>Selby</option>
+							<option>Sevenoaks</option>
+							<option>Sheffield</option>
+							<option>Shepway</option>
+							<option>Shetland Islands</option>
+							<option>Shropshire</option>
+							<option>Slough</option>
+							<option>Solihull</option>
+							<option>South Ayrshire</option>
+							<option>South Buckinghamshire</option>
+							<option>South Cambridgeshire</option>
+							<option>South Derbyshire</option>
+							<option>South Gloucestershire</option>
+							<option>South Hams</option>
+							<option>South Holland</option>
+							<option>South Kesteven</option>
+							<option>South Lakeland</option>
+							<option>South Lanarkshire</option>
+							<option>South Norfolk</option>
+							<option>South Northamptonshire</option>
+							<option>South Oxfordshire</option>
+							<option>South Ribble</option>
+							<option>South Somerset</option>
+							<option>South Staffordshire</option>
+							<option>South Tyneside</option>
+							<option>Southampton</option>
+							<option>Southend-On-Sea</option>
+							<option>Southwark</option>
+							<option>Spelthorne</option>
+							<option>St Albans City</option>
+							<option>St Edmundsbury</option>
+							<option>St Helens</option>
+							<option>Stafford</option>
+							<option>Staffordshire Moorlands</option>
+							<option >Stevenage</option>
+							<option>Stirling</option>
+							<option>Stockport</option>
+							<option>Stockton On Tees</option>
+							<option>Stoke-On-Trent</option>
+							<option>Stratford-on-Avon</option>
+							<option>Stroud</option>
+							<option>Suffolk Coastal</option>
+							<option>Sunderland</option>
+							<option>Surrey Heath</option>
+							<option>Sutton</option>
+							<option>Swale</option>
+							<option>Swansea</option>
+							<option>Swindon</option>
+							<option>Tameside</option>
+							<option>Tamworth</option>
+							<option>Tandridge</option>
+							<option>Taunton Deane</option>
+							<option>Teignbridge</option>
+							<option>Telford and Wrekin Council</option>
+							<option>Tendring</option>
+							<option>Test Valley</option>
+							<option>Tewkesbury</option>
+							<option>Thanet</option>
+							<option>Three Rivers</option>
+							<option>Thurrock</option>
+							<option>Tonbridge and Malling</option>
+							<option>Torbay</option>
+							<option>Torfaen</option>
+							<option>Torridge</option>
+							<option>Tower Hamlets</option>
+							<option>Trafford</option>
+							<option>Tunbridge Wells</option>
+							<option>Uttlesford</option>
+							<option>Vale of Glamorgan</option>
+							<option>Vale of White Horse</option>
+							<option>Wakefield</option>
+							<option>Walsall</option>
+							<option>Waltham Forest</option>
+							<option>Wandsworth</option>
+							<option>Warrington</option>
+							<option>Warwick</option>
+							<option>Watford</option>
+							<option>Waveney</option>
+							<option>Waverley</option>
+							<option>Wealden</option>
+							<option>Wellingborough</option>
+							<option>Welwyn Hatfield</option>
+							<option>West Berkshire</option>
+							<option>West Devon</option>
+							<option>West Dorset</option>
+							<option>West Dunbartonshire</option>
+							<option>West Lancashire</option>
+							<option>West Lindsey</option>
+							<option>West Lothian</option>
+							<option>West Oxfordshire</option>
+							<option>West Somerset</option>
+							<option>Westminster</option>
+							<option>Weymouth and Portland</option>
+							<option>Wigan</option>
+							<option>Wiltshire</option>
+							<option>Winchester City</option>
+							<option>Windsor and Maidenhead</option>
+							<option>Wirral</option>
+							<option>Woking</option>
+							<option>Wokingham</option>
+							<option>Wolverhampton</option>
+							<option>Worcester City</option>
+							<option>Worthing</option>
+							<option>Wrexham</option>
+							<option>Wychavon</option>
+							<option>Wycombe</option>
+							<option>Wyre</option>
+							<option>Wyre Forest</option>
+							<option>York</option>
+						</select>
+					</div>
+				<br><div id="StarRating">
+						<label>Star Rating</label>
+						<select>
+							<option selected="selected">All</option>
+							<option>1 Star</option>
+							<option>2 Star</option>
+							<option>3 Star</option>
+							<option>4 Star</option>
+							<option>5 Star</option>
+						</select>
+					</div>	
+				</div>
+				<button title="Click to show/hide content" type="button" onclick="if(document.getElementById('spoiler') .style.display=='none') {document.getElementById('spoiler') .style.display=''}else{document.getElementById('spoiler') .style.display='none'}">More/less options</button>
+		<table width="600" border="1" cellpadding"1" cellspacing="1">
+		<tr>
+		<th>RatingDate</th>
+		<th>BusinessName</th>
+		<th>BusinessType</th>
+		<th>AddressLine2</th>
+		<th>AddressLine3</th>
+		<th>AddressLine4</th>
+		<th>Postcode</th>
+		<th>RatingValue</th>
+		<th>ID</th>
+		<tr>
+<?php  
+while($fsadata=mysql_fetch_assoc($records)) {
+
+echo "<tr>";
+
+echo "<td>".$fsadata['RatingDate']."</td>";
+
+echo "<td>".$fsadata['BusinessName']."</td>";
+
+echo "<td>".$fsadata['BusinessType']."</td>";
+
+echo "<td>".$fsadata['AddressLine2']."</td>";
+
+echo "<td>".$fsadata['AddressLine3']."</td>";
+
+echo "<td>".$fsadata['AddressLine4']."</td>";
+
+echo "<td>".$fsadata['Postcode']."</td>";
+
+echo "<td>".$fsadata['ID']."</td>";
+
+echo"</tr";
+
+}
+?>
+</body>
+</html>
